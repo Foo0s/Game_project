@@ -8,6 +8,10 @@ class Settings():
         self.screen_height = 800
         self.bg_color = (255, 200, 30)
         self.name_game = "Alien Invasion"
+        self.alien_speed = 0.5
+        self.fleet_drop_speed = 10
+        # fleet_direction = 1 обозначает движение вправо, а -1 - влево
+        self.fleet_direction = 1
 
         #Настройка корабля
         self.ship_speed = 8
