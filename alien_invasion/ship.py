@@ -1,5 +1,6 @@
 import pygame
 
+
 class SpaceShip:
     '''Класс для управления кораблем.'''
 
@@ -21,12 +22,8 @@ class SpaceShip:
         self.moving_right = False
         self.moving_left = False
 
-
         # Каждый новый корабль появляется у нижнего края экрана.
-        self.rect.midbottom = self.screen_rect.midbottom ### Выравнивание позиции
-
-
-
+        self.rect.midbottom = self.screen_rect.midbottom  ### Выравнивание позиции
 
     def update(self):
         '''Обновляет позицию корабля с учётом флага.'''
@@ -42,4 +39,9 @@ class SpaceShip:
     def blitme(self):
         '''Рисует корабль в текущей позиции.'''
         self.screen.blit(self.image, self.rect)
+
+    def center_ship(self):
+        '''Размещение корабля в центре экрана..'''
+        self.rect.midbottom = self.screen_rect.midbottom
+        self.x = float(self.rect.x)
 
