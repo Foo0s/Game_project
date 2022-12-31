@@ -72,6 +72,8 @@ class AlienInvasion:
             sys.exit()
         elif event.key == pygame.K_SPACE:
             self._fire_bullet()
+        elif event.key == pygame.K_p:
+            self.start_game()
 
     def _check__keyup_events(self, event):
         '''Реагирует на отпускание клавиш.'''
@@ -83,7 +85,9 @@ class AlienInvasion:
     def _check_play_button(self, mouse_p):
         ''' Запуск игры при нажатии на кнопку - "PLAY" '''
         button_clicked = self.play_button.rect.collidepoint(mouse_p)
-        if button_clicked and not self.stats.game_active:
+        if button_clicked or not self.stats.game_active:
+            # Сброс игровых настроек.
+            self.settings.initialize_dynamic_settings()
             # Сброс игровой статистики
             self.stats.reset_stats()
             self.stats.game_active = True
@@ -98,6 +102,22 @@ class AlienInvasion:
 
             # Удаление(скрытие) указателя мыши
             pygame.mouse.set_visible(False)
+        elif not self.stats.game_active:
+            self.start_game()
+
+    def start_game(self):
+        if not self.stats.game_active:
+            # Сброс игровой статистики
+            self.stats.reset_stats()
+            self.stats.game_active = True
+
+            # Очистка списка пришельцев и bullet
+            self.aliens.empty()
+            self.bullets.empty()
+
+            # Создание нового флота и размещение корабля в центре экрана
+            self._create_fleet()
+            self.SpaceShip.center_ship()
 
     def _fire_bullet(self):
         '''Создание нового снаряда и включение его в группу bullets.'''
@@ -122,6 +142,7 @@ class AlienInvasion:
             # Создание нового флота.
             self.bullets.empty()  # Удаление снарядов
             self._create_fleet()
+            self.settings.increase_speed()
 
     def _create_fleet(self):
         '''Create флота вторжения'''
