@@ -44,6 +44,9 @@ class Settings():
         # Подсчет очков
         self.alien_points = 23
 
+        # Рекорд игрока
+        self.high_score = 0
+
     def increase_speed(self):
         '''Увеличивает настройки скорости.'''
         self.ship_speed_factor *= self.speed_game

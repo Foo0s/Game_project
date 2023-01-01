@@ -119,6 +119,7 @@ class AlienInvasion:
         self.stats.reset_stats()
         self.stats.game_active = True
         self.sb_al.prep_score()
+        self.sb_al.prep_ship()
 
         # Очистка списка пришельцев и bullet
         self.aliens.empty()
@@ -225,6 +226,10 @@ class AlienInvasion:
         """Проверка на столкновение корабля с пришельцем.."""
         if self.stats.ships_left > 0:
             self.stats.ships_left -= 1
+            self.sb_al.prep_ship()
+            self.stats.reset_stats()
+            self.sb_al.prep_score()
+
             # Очистка.
             self.aliens.empty()
             self.bullets.empty()
