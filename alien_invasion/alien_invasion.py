@@ -71,6 +71,9 @@ class AlienInvasion:
         elif event.key == pygame.K_LEFT:
             self.SpaceShip.moving_left = True
         elif event.key == pygame.K_q:
+            f_number = open("max_number.txt", "w")
+            f_number.write(str(self.stats.high_score))
+            f_number.close()
             sys.exit()
         elif event.key == pygame.K_SPACE:
             self._fire_bullet()

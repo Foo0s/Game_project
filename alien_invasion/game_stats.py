@@ -4,7 +4,9 @@ class GameStats:
         self.settings = ai_sup_game.settings
         self.reset_stats()
         self.game_active = False
-        self.high_score = 0
+        open_file_number = open("max_number.txt", "r")
+        a = open_file_number.read()
+        self.high_score = int(a)
 
     def reset_stats(self):
         'Инициализация статистики..'
