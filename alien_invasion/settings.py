@@ -27,14 +27,14 @@ class Settings():
         self.bullet_allowed = 4
 
         # Темп ускорения игры
-        self.speed_game = 1.1
+        self.speed_game = 9.2
         self.initialize_dynamic_settings()
 
     def initialize_dynamic_settings(self):
         '''Инициализирует настройки, изменяющиеся в ходе игры.'''
         self.ship_speed_factor = 1.7
         self.bullet_speed_factor = 3.2
-        self.alien_speed_factor = 1.0
+        self.alien_speed_factor = 9.2
 
         self.fleet_direction = 1
 

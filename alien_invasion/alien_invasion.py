@@ -85,25 +85,45 @@ class AlienInvasion:
     def _check_play_button(self, mouse_p):
         ''' Запуск игры при нажатии на кнопку - "PLAY" '''
         button_clicked = self.play_button.rect_1.collidepoint(mouse_p)
-        if button_clicked or not self.stats.game_active:
-            # Сброс игровых настроек.
-            self.settings.initialize_dynamic_settings()
-            # Сброс игровой статистики
-            self.stats.reset_stats()
-            self.stats.game_active = True
+        button_clicked_2 = self.play_button.rect_2.collidepoint(mouse_p)
+        button_clicked_3 = self.play_button.rect_3.collidepoint(mouse_p)
+        button_clicked_4 = self.play_button.rect_4.collidepoint(mouse_p)
 
-            # Очистка списка пришельцев и bullet
-            self.aliens.empty()
-            self.bullets.empty()
+        if button_clicked and not self.stats.game_active:
+            self.reset_param()
+        elif button_clicked_2 and not self.stats.game_active:
+            self.settings.increase_speed()
+            self.reset_param()
 
-            # Создание нового флота и размещение корабля в центре экрана
-            self._create_fleet()
-            self.SpaceShip.center_ship()
+        elif button_clicked_3 and not self.stats.game_active:
+            self.settings.increase_speed()
+            self.settings.increase_speed()
+            self.reset_param()
 
-            # Удаление(скрытие) указателя мыши
-            pygame.mouse.set_visible(False)
-        elif not self.stats.game_active:
-            self.start_game()
+        elif button_clicked_4 and not self.stats.game_active:
+            self.settings.increase_speed()
+            self.settings.increase_speed()
+            self.settings.increase_speed()
+
+            self.reset_param()
+
+    def reset_param(self):
+        # Сброс игровых настроек.
+        self.settings.initialize_dynamic_settings()
+        # Сброс игровой статистики
+        self.stats.reset_stats()
+        self.stats.game_active = True
+
+        # Очистка списка пришельцев и bullet
+        self.aliens.empty()
+        self.bullets.empty()
+
+        # Создание нового флота и размещение корабля в центре экрана
+        self._create_fleet()
+        self.SpaceShip.center_ship()
+
+        # Удаление(скрытие) указателя мыши
+        pygame.mouse.set_visible(False)
 
     def start_game(self):
         if not self.stats.game_active:
