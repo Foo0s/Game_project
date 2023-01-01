@@ -128,6 +128,9 @@ class AlienInvasion:
         self._create_fleet()
         self.SpaceShip.center_ship()
 
+        # Уровень
+        self.sb_al.prep_level()
+
         # Удаление(скрытие) указателя мыши
         pygame.mouse.set_visible(False)
 
@@ -168,11 +171,16 @@ class AlienInvasion:
             for aliens in collisions.values():
                 self.stats.score += self.settings.alien_points * len(aliens)
             self.sb_al.prep_score()
+            self.sb_al.check_high_score()
         if not self.aliens:
             # Создание нового флота.
             self.bullets.empty()  # Удаление снарядов
             self._create_fleet()
             self.settings.increase_speed()
+
+            # Увеличение счета
+            self.stats.level += 1
+            self.sb_al.prep_level()
 
     def _create_fleet(self):
         '''Create флота вторжения'''
