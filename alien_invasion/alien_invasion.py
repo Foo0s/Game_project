@@ -2,6 +2,7 @@ import sys
 import pygame
 from time import sleep
 
+
 import settings
 from settings import Settings
 from ship import SpaceShip
